@@ -1,0 +1,15 @@
+# Foundry
+out/
+cache/
+broadcast/
+
+# Dependencies
+lib/
+node_modules/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db

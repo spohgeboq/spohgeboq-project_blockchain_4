@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAO Governance dApp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>DAO Governance</h1>
+    <button id="connectBtn">Connect Wallet</button>
+</header>
+
+<main id="app" style="display:none;">
+
+    <section id="wallet-info">
+        <h2>Wallet</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="label">Address</span>
+                <span id="userAddress" class="val mono">—</span>
+            </div>
+            <div class="info-card">
+                <span class="label">Token Balance</span>
+                <span id="tokenBalance" class="val">—</span>
+            </div>
+            <div class="info-card">
+                <span class="label">Voting Power</span>
+                <span id="votingPower" class="val">—</span>
+            </div>
+            <div class="info-card">
+                <span class="label">Delegate</span>
+                <span id="delegateAddr" class="val mono">—</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="delegation">
+        <h2>Delegate Votes</h2>
+        <div class="form-row">
+            <input id="delegateInput" type="text" placeholder="Address to delegate to (or leave empty for self)">
+            <button id="delegateSelfBtn">Delegate to Self</button>
+            <button id="delegateBtn">Delegate</button>
+        </div>
+        <p id="delegateStatus" class="status"></p>
+    </section>
+
+    <section id="proposals-section">
+        <h2>Proposals</h2>
+        <div class="form-row">
+            <input id="proposalIdInput" type="text" placeholder="Enter Proposal ID">
+            <button id="loadProposalBtn">Load Proposal</button>
+        </div>
+
+        <div id="scanControls" class="form-row" style="margin-top:8px;">
+            <input id="fromBlock" type="number" placeholder="From block (e.g. 0)">
+            <input id="toBlock" type="number" placeholder="To block (leave empty = latest)">
+            <button id="scanBtn">Scan ProposalCreated Events</button>
+        </div>
+
+        <div id="proposalsList"></div>
+    </section>
+
+</main>
+
+<div id="overlay" style="display:none;">
+    <div id="overlayMsg">Processing…</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
