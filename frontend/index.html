@@ -1,73 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAO Governance dApp</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAO Governance dApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-    <h1>DAO Governance</h1>
-    <button id="connectBtn">Connect Wallet</button>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">DAO</div>
+    <div>
+      <h1>DAO Governance</h1>
+      <p>On-chain voting · treasury control · proposal execution</p>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="#wallet-info">Wallet</a>
+    <a href="#delegation">Delegate</a>
+    <a href="#proposals-section">Proposals</a>
+  </nav>
+  <button class="btn-connect" id="connectBtn">Connect Wallet</button>
 </header>
 
+<div class="hero-wrap">
+  <div class="hero-split">
+    <div class="hero-left">
+      <div class="eyebrow">Decentralized Governance Dashboard</div>
+      <h2>Govern your DAO with <span>clarity</span> &amp; confidence.</h2>
+      <p class="hero-text">
+        Connect MetaMask to view your token balance, voting power, delegate status,
+        active proposals, vote results, and governance transactions — all in one place.
+      </p>
+      <div class="hero-actions">
+        <button type="button" class="btn-primary" onclick="document.getElementById('connectBtn').click()">Start Governance</button>
+        <a href="#proposals-section" class="btn-ghost">View Proposals →</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><strong>4%</strong><span>Quorum threshold</span></div>
+        <div class="stat"><strong>2 Days</strong><span>Timelock delay</span></div>
+        <div class="stat"><strong>ERC-20</strong><span>Vote token standard</span></div>
+      </div>
+    </div>
+
+    <div class="payment-panel">
+      <div class="panel-header">
+        <div class="panel-dots"><span></span><span></span><span></span></div>
+        <span class="panel-title">DAO VOTE PANEL</span>
+        <span class="panel-qr">⬡ On-Chain</span>
+      </div>
+      <div class="panel-body">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <p class="panel-heading">Cast Your Vote</p>
+          <span class="status-badge">Active</span>
+        </div>
+        <div class="quick-vote">
+          <button class="qv-btn for"><span class="qv-icon">✓</span><span>For</span></button>
+          <button class="qv-btn against"><span class="qv-icon">✕</span><span>Against</span></button>
+          <button class="qv-btn abstain"><span class="qv-icon">—</span><span>Abstain</span></button>
+        </div>
+        <div class="divider">or enter proposal ID</div>
+        <div class="field">
+          <label>Proposal ID <span class="required">*</span></label>
+          <div class="input-wrap">
+            <input type="text" placeholder="0x1a2b3c4d..." id="panelProposalId" />
+            <span class="input-icon">⬡</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Voter Address</label>
+          <div class="input-wrap">
+            <input type="text" placeholder="Connect wallet to populate" id="panelAddress" readonly />
+            <span class="input-icon">⚿</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Voting Power</label>
+            <div class="input-wrap"><input type="text" placeholder="—" id="panelVotingPower" readonly /></div>
+          </div>
+          <div class="field">
+            <label>Delegate</label>
+            <div class="input-wrap"><input type="text" placeholder="Self" id="panelDelegate" readonly /></div>
+          </div>
+        </div>
+        <div class="votes-section">
+          <div class="votes-label"><span>Current votes</span><span>Quorum: 4%</span></div>
+          <div class="votes-bar">
+            <div class="vb-for" style="width:62%"></div>
+            <div class="vb-against" style="width:28%"></div>
+            <div class="vb-abstain" style="width:10%"></div>
+          </div>
+          <div class="votes-counts">
+            <div class="vc"><div class="vc-dot" style="background:var(--emerald)"></div> 62% For</div>
+            <div class="vc"><div class="vc-dot" style="background:#ef4444"></div> 28% Against</div>
+            <div class="vc"><div class="vc-dot" style="background:#475569"></div> 10% Abstain</div>
+          </div>
+        </div>
+        <div class="total-row">
+          <span class="total-label">Voting Power Used</span>
+          <span class="total-val" id="panelPowerDisplay">Connect wallet</span>
+        </div>
+        <button class="btn-submit" onclick="document.getElementById('connectBtn').click()">Submit Vote On-Chain</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features-wrap">
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feat-num">01</div>
+      <h3>Connect Wallet</h3>
+      <p>Use MetaMask with your local Anvil deployment and interact with your DAO contracts directly from the browser.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feat-num">02</div>
+      <h3>Delegate Votes</h3>
+      <p>Delegate voting power to yourself or another address before voting on proposals to activate your governance rights.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feat-num">03</div>
+      <h3>Vote On Proposals</h3>
+      <p>Cast For, Against, or Abstain votes on-chain and inspect full proposal results after the voting period ends.</p>
+    </div>
+  </div>
+</div>
+
 <main id="app" style="display:none;">
+  <section id="wallet-info" class="app-section">
+    <h2 class="section-title">Wallet Overview</h2>
+    <div class="info-grid">
+      <div class="info-card"><span class="info-label">Address</span><span id="userAddress" class="info-val mono">—</span></div>
+      <div class="info-card"><span class="info-label">Token Balance</span><span id="tokenBalance" class="info-val">—</span></div>
+      <div class="info-card"><span class="info-label">Voting Power</span><span id="votingPower" class="info-val">—</span></div>
+      <div class="info-card"><span class="info-label">Delegate</span><span id="delegateAddr" class="info-val mono">—</span></div>
+    </div>
+    <p id="walletStatus" class="status-msg"></p>
+  </section>
 
-    <section id="wallet-info">
-        <h2>Wallet</h2>
-        <div class="info-grid">
-            <div class="info-card">
-                <span class="label">Address</span>
-                <span id="userAddress" class="val mono">—</span>
-            </div>
-            <div class="info-card">
-                <span class="label">Token Balance</span>
-                <span id="tokenBalance" class="val">—</span>
-            </div>
-            <div class="info-card">
-                <span class="label">Voting Power</span>
-                <span id="votingPower" class="val">—</span>
-            </div>
-            <div class="info-card">
-                <span class="label">Delegate</span>
-                <span id="delegateAddr" class="val mono">—</span>
-            </div>
-        </div>
-    </section>
+  <section id="delegation" class="app-section">
+    <h2 class="section-title">Delegate Votes</h2>
+    <div class="form-row">
+      <input id="delegateInput" type="text" placeholder="Address to delegate to, or leave empty for self" />
+      <button id="delegateSelfBtn" class="btn-action secondary">Delegate to Self</button>
+      <button id="delegateBtn" class="btn-action">Delegate</button>
+    </div>
+    <p id="delegateStatus" class="status-msg"></p>
+  </section>
 
-    <section id="delegation">
-        <h2>Delegate Votes</h2>
-        <div class="form-row">
-            <input id="delegateInput" type="text" placeholder="Address to delegate to (or leave empty for self)">
-            <button id="delegateSelfBtn">Delegate to Self</button>
-            <button id="delegateBtn">Delegate</button>
-        </div>
-        <p id="delegateStatus" class="status"></p>
-    </section>
-
-    <section id="proposals-section">
-        <h2>Proposals</h2>
-        <div class="form-row">
-            <input id="proposalIdInput" type="text" placeholder="Enter Proposal ID">
-            <button id="loadProposalBtn">Load Proposal</button>
-        </div>
-
-        <div id="scanControls" class="form-row" style="margin-top:8px;">
-            <input id="fromBlock" type="number" placeholder="From block (e.g. 0)">
-            <input id="toBlock" type="number" placeholder="To block (leave empty = latest)">
-            <button id="scanBtn">Scan ProposalCreated Events</button>
-        </div>
-
-        <div id="proposalsList"></div>
-    </section>
-
+  <section id="proposals-section" class="app-section">
+    <h2 class="section-title">Governance Proposals</h2>
+    <div class="form-row">
+      <input id="proposalIdInput" type="text" placeholder="Enter Proposal ID" />
+      <button id="loadProposalBtn" class="btn-action">Load Proposal</button>
+    </div>
+    <div id="scanControls" class="form-row" style="margin-top:10px;">
+      <input id="fromBlock" type="number" placeholder="From block, e.g. 0" />
+      <input id="toBlock"   type="number" placeholder="To block, empty = latest" />
+      <button id="scanBtn" class="btn-action secondary">Scan Events</button>
+    </div>
+    <div id="proposalsList"></div>
+  </section>
 </main>
 
-<div id="overlay" style="display:none;">
-    <div id="overlayMsg">Processing…</div>
-</div>
+<footer>
+  <div>
+    <strong>DAO Governance dApp</strong>
+    <p>Built with Solidity, Foundry, OpenZeppelin Governor, Timelock, and Ethers.js.</p>
+  </div>
+  <span class="footer-chain">Anvil · Chain ID: 31337</span>
+</footer>
+
+<div id="overlay" style="display:none;"><div id="overlayMsg">Processing…</div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
 <script src="app.js"></script>
