@@ -12,6 +12,10 @@ This repository contains the complete implementation of a DAO:
 5. **Vesting**: Linear token release for team/founders.
 6. **Frontend**: A minimal dApp to interact with the governance system.
 
+## 🌐 Deployed Version
+
+The live deployed version is available at: [https://blockchain.chiclab.me/](https://blockchain.chiclab.me/)
+
 ## 🛠 Tech Stack
 
 - **Smart Contracts**: Solidity 0.8.24
